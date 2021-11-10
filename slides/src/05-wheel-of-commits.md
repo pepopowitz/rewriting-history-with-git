@@ -1,6 +1,6 @@
 Layout: module
 
-# Stages of work
+# Stages of Work
 
 ---
 

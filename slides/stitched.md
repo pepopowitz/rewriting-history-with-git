@@ -262,7 +262,7 @@ Trail: What's a commit?
 ---
 Layout: module
 
-# Stages of work
+# Stages of Work
 
 ---
 
@@ -303,6 +303,437 @@ Notes:
 this is how we ADD changes....and if you're using git, you're likely pretty familiar with this. But we're here to rewrite history.
 
 ---
+Layout: module
+
+# Undoing Changes
+
+## I made changes that I haven't committed and I want to undo them.
+
+---
+
+Trail: Undoing changes
+
+## It depends
+
+on where we are on the wheel! of! commits!
+
+---
+
+Trail: Undoing changes
+
+## Case: "I want to discard unstaged changes to a file"
+
+### Scenario
+
+### Command
+
+- `git restore`
+
+  - `--worktree` is assumed
+
+### Real-life Examples
+
+---
+
+Trail: Undoing changes
+
+## Case: "I want to unstage staged changes to a file"
+
+- `git restore --staged`
+
+### Scenario
+
+### Command
+
+### Real-life Examples
+
+---
+
+Trail: Undoing changes
+
+## Case: "I want to discard staged changes to a file"
+
+### Scenario
+
+### Command
+
+- `git restore --staged --worktree`
+
+### Real-life Examples
+
+---
+
+Trail: Undoing changes
+
+## Case: "I want to discard changes to an untracked file"
+
+### Scenario
+
+### Command
+
+- ` git clean`
+- probably need either `-i` or `-f` flag
+  - `-i` is interactive - it asks you which files to reset
+  - `-f` is force - just does all of them.
+  - `-d` to include directories
+
+### Real-life Examples
+
+---
+
+Trail: Undoing changes
+
+## Case: "I want to discard all changes!"
+
+### Scenario
+
+### Command
+
+- `git clean -df && git restore --worktree --staged .`
+- make an alias for it!
+- or stash & forget about it :)
+
+---
+
+Trail: Undoing changes
+
+## Case: "I want to discard all changes but save it for later"
+
+### Scenario
+
+### Command
+
+- `git stash`
+
+...and when you want it back, `git stash pop/apply`
+(pop removes it from the stashes queue, apply leaves it in the stashes queue.)
+
+### Real-life Examples
+
+---
+Layout: module
+
+# Updating Commits
+
+## I committed something but it was not quite right.
+
+---
+
+Trail: Updating commits
+
+## !!!Danger zone!!!!
+
+Be cautious when commits have been pushed to others!
+
+- if they have started more work based on that commit, things get real bad!!!
+- if they haven't started any work, they will probably want to delete the branch before re-fetching it.
+
+---
+
+Trail: Updating commits
+
+## Case: "I want to update my last commit"
+
+### Scenario
+
+### Command
+
+- `git commit --amend`
+- add things before running the command, or add the -a flag
+- amends the previous commit
+
+### Real-life Examples
+
+- update a commit message or body
+- add/update changes
+  - I accidentally included a comment or debugging statement in a previous commit
+- add a collaborator
+  - give credit where credit is due!
+  - show footer
+  - mention pear
+
+---
+
+Trail: Updating commits
+
+## Case: "I want to update an older commit"
+
+- we're going to get to this later
+
+---
+Layout: module
+
+# Undoing Commits
+
+## I committed things and I want to undo them.
+
+---
+
+Trail: Undoing commits
+
+## !!!Danger zone!!!!
+
+Be cautious when commits have been pushed to others!
+
+- if they have started more work based on that commit, things get real bad!!!
+- if they haven't started any work, they will still probably want to delete the branch before re-fetching it.
+
+---
+
+Trail: Updating commits
+
+## Question: is it the most recent commit?
+
+---
+
+Trail: Updating commits,Most recent commit?
+
+## YES
+
+---
+
+Trail: Updating commits,Most recent commit?,YES
+
+## Case: "I want to undo my last commit and save the results"
+
+### Scenario
+
+### Command
+
+- `git reset`
+  - `--soft` or `--mixed` flags depend on what state you want the changes in (soft: staged or mixed: unstaged)
+
+```
+--mixed               reset HEAD and index
+--soft                reset only HEAD
+--hard                reset HEAD, index and working tree
+```
+
+- afterward you can do what you want with the changes -- stash them, etc.
+
+### Real-life Examples
+
+- you accidentally commit on a branch you didn't mean to
+  - reset, switch to a new branch, & commit
+
+---
+
+Trail: Updating commits,Most recent commit?,YES
+
+## Case: "I want to undo my last commit and never see it again"
+
+### Scenario
+
+### Command
+
+- `git reset --hard HEAD~1`
+  - details of what `HEAD~1` MEANS
+
+### Real-life Examples
+
+- I committed a secret **but didn't push it up yet**
+  - note that the commit itself doesn't get cleaned up right away, until git garbage collects it
+    - and in order to be removed by gc, it needs to be removed from reflog
+      - which by default doesn't happen for 30 days for unreachable commits
+      - so if you need to completely wipe this commit from existence, you have to do a little bit more
+
+---
+
+Trail: Updating commits,Most recent commit?
+
+## NO
+
+---
+
+Trail: Updating commits,Most recent commit?,NO
+
+## Case: "I want to revert a commit without rewriting history"
+
+### Scenario
+
+### Command
+
+- `git revert SHA`
+- this creates another commit with the inverse of those changes
+- the original commit remains in the log forever!
+  - which is nice if you don't want to worry about this being a shared/public branch
+
+### Real-life Examples
+
+- rolling back a change that got deployed, without having to "roll back".
+
+---
+
+Trail: Updating commits
+
+## Case: "Awwww @#$!#$#@ I committed secrets and I pushed them up"
+
+### Scenario
+
+### Command
+
+- https://sparkbox.com/foundry/remove_file_from_git_history_with_git_filter-branch
+- cycle your credentials!!!!
+
+### Real-life Examples
+
+- https://git-scm.com/book/en/v2/Git-Basics-Undoing-Things
+
+---
+Layout: module
+
+# Replaying Changes
+
+## I want to replay this branch onto a different starting point.
+
+todo: is there a better way to say that before they know what replaying is?
+
+---
+
+Trail: Replaying changes
+
+## What do you mean replaying?
+
+### Merging vs rebasing
+
+---
+
+Trail: Replaying changes
+
+## Case: "I want this branch to be based on a different starting point"
+
+### Scenario
+
+### Command
+
+- `git rebase identifier`
+- identifier can be a branch name, a SHA, a tag, a relative reference like HEAD~2....
+
+### Real-life Examples
+
+- New changes have been merged to main and I need to rebase my branch on the latest main commit
+- I created a branch from the wrong commit/branch and I want to move it
+
+---
+Layout: module
+
+# Replaying Changes With Modifications
+
+## I did something a few commits ago that I want to change.
+
+- and I want to rewrite it out of history (so a revert commit wasn't what you wanted)
+
+---
+
+Trail: Replaying changes With modifications
+
+## Detour: Interactive Rebasing
+
+- note that if you just "pick" everything it is the same as rebasing non-interactively
+- note that when rewriting commits, the SHAs are changed!!!
+  - be extra careful when pushing this!!!
+- note that you can abort from the rebase interactive screen by exiting without saving (`:q!`)
+- to continue, save the file (`:wq`)
+
+---
+
+Trail: Replaying changes With modifications
+
+## Case: "I want to reorder the commits in this branch"
+
+### Scenario
+
+### Command
+
+- `git rebase -i`; swap lines
+
+### Real-life Examples
+
+- I want my PR to tell a story
+- I want my PR to be a useful guide for someone doing something similar in the future
+- note that even if you go from 7-6-8 to 6-7-8, and both end up with the code being the same at 8, you'll end up with a new commit for 8!
+
+---
+
+Trail: Replaying changes With modifications
+
+## Case: "I want to remove a commit from this branch"
+
+### Scenario
+
+### Command
+
+- `git rebase -i`; `drop`/`d`
+
+### Real-life Examples
+
+- I made a quick fix and committed it in my branch but someone else did it better in another branch
+- I was messing around and made a commit that I just don't want anymore
+
+---
+
+Trail: Replaying changes With modifications
+
+## Case: "I want to update a commit in this branch"
+
+- remember that if it's the latest you can use `git commit --amend` without rebasing
+
+### Scenario
+
+### Command
+
+- `git rebase -i`; `edit`/`e`
+- make the changes
+- `git commit --amend` (or make a new commit)
+- `git rebase --continue`
+
+### Notes
+
+- you can edit multiple commits while rebasing
+- if you do multiple, you'll repeat the "make changes, amend, continue" loop until they're all complete
+
+### Real-life Examples
+
+- I want to give credit where credit is due! (pairing; mention pear)
+- I accidentally included a comment or debugging statement in a previous commit
+
+---
+
+Trail: Replaying changes With modifications
+
+## Case: "I want to combine some older commits into one"
+
+### Scenario
+
+### Command
+
+- `git rebase -i`;
+- `squash`/`s`
+  - if I care about preserving the individual commit messages
+  - `:wq` to start rebasing
+  - edit "squashed" commit message (tells you what's all in this commit)
+    - `:wq` to make this commit
+- `fixup`/`f`
+  - if I don't care about preserving the individual commit messages
+  - `:wq` to start rebasing
+- need to deal with any conflicts along the way
+  - make changes
+  - commit them
+  - `git rebase --continue`
+
+### Real-life Examples
+
+- I missed part of a previous commit until later
+- I want my PR to tell a story
+- I want my PR to be a useful guide for someone doing something similar in the future
+
+---
+Layout: module
+
+# Epic Conclusion
+
+---
+
 Footer: false
 
 <!-- .slide: data-background="/images/title.jpg" class="title" -->

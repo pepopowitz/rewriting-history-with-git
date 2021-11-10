@@ -1,3 +1,9 @@
+Layout: module
+
+# Epic Conclusion
+
+---
+
 Footer: false
 
 <!-- .slide: data-background="/images/title.jpg" class="title" -->
