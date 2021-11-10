@@ -1,5 +1,5 @@
 ---
-title: My Reveal Starter Kit - Steven J Hicks
+title: Rewriting History With Git - Steven J Hicks
 theme: css/theme.css
 revealOptions:
   transition: 'none'

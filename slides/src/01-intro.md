@@ -10,7 +10,7 @@ Footer: false
   </defs>
 </svg>
 
-# Title
+# Rewriting History With Git
 
 ## Steven Hicks
 
@@ -29,7 +29,7 @@ Footer: false
 <p>
   <svg class="icon">
     <use xlink:href="#si-zocial-cloudapp" />
-  </svg>stevenhicks.me/talkUrl
+  </svg>stevenhicks.me/rewriting-history-with-git
 </p>
 
 Notes:
