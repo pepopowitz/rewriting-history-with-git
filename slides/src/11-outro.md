@@ -1,21 +1,3 @@
-# Outro
-
-## But no trail
-
-> this is a quote
-
-- this is a list
-
-this is body copy
-
-Notes:
-
-and some outro notes
-
-go here
-
----
-
 Footer: false
 
 <!-- .slide: data-background="/images/title.jpg" class="title" -->
@@ -39,7 +21,7 @@ Footer: false
 <p>
   <svg class="icon">
     <use xlink:href="#si-zocial-cloudapp" />
-  </svg>stevenhicks.me/talkUrl
+  </svg>stevenhicks.me/rewriting-history-with-git
 </p>
 
 Notes:

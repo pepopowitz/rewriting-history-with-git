@@ -73,83 +73,236 @@ our mission is to expand the art market,
 and we're doing that with a platform for collecting and discovering art.
 
 ---
-
-Trail: Module
 Layout: module
 
-## More stuff!!!! Including a trail of 'Module'.
-
-### Happening here <!-- .element: class="fragment" -->
-
-#### If you know what I mean <!-- .element: class="fragment" -->
+# Context
 
 ---
 
-Layout: steve
-Trail: Module,Section
+Trail: Context
 
-# Stuff!
-
-## Including a trail of Module & Section
+## Why are we here?
 
 ---
 
-Trail: Module,Section,Dog
+Trail: Context
 
-# Three trails!
-
-## Module, section and dog!
-
-Notes:
-and I got some notes, too!
+## Goal for today
 
 ---
 
-Footer: false
+Trail: Context
 
-Trail: Module
+## How we're going to get there
 
-# A small trail
-
-## Module
-
-### But no footer
+- we're going to use the console!!!
+  - I used to be scared of it too
 
 ---
+
+Trail: Context
+
+## Setting the scene
+
+---
+
+Trail: Context, Setting The Scene
+
+#### wtf is bill & ted's
+
+---
+
+Trail: Context, Setting The Scene
+
+#### who tf are bill & ted
+
+---
+
+Trail: Context, Setting The Scene
+
+#### why do we need to help them pass their history final
+
+---
+
+Trail: Context, Setting The Scene
+
+#### how are we going to help them pass their history final
+
+---
+
+Trail: Context, Setting The Scene
+
+seek this git log:
 
 ```
-abc
-var x = y;
-var x = y;
-var x = y;
-var x = y;
-var x = y;
-var x = y;
-var x = y;
-var x = y;
-var x = y;
-var x = y;
+- form basis of utopian society (now)
+- deliver history report (2 hrs ago)
+- collect historical figures (4 hrs ago)
+- acquire phone booth from rufus (12 hrs ago)
 ```
 
 ---
-# Outro
+Layout: module
 
-## But no trail
-
-> this is a quote
-
-- this is a list
-
-this is body copy
-
-Notes:
-
-and some outro notes
-
-go here
+# What is Git?
 
 ---
 
+Trail: What's Git?
+
+## source control (duh)
+
+---
+
+Trail: What's Git?
+
+## Distributed VCS
+
+---
+
+Trail: What's Git?,Distributed VCS
+
+### vs centralized vcs
+
+---
+
+Trail: What's Git?,Distributed VCS
+
+### why does this matter?
+
+---
+
+Trail: What's Git?
+
+## How does git store things?
+
+---
+
+Trail: What's Git?,How does it store things?
+
+### everything is an object
+
+#### folders, files, branches, tags, commits, ...
+
+#### they're related to each other buy trees somehow???
+
+---
+
+Trail: What's Git?,How does it store things?
+
+### not as a diff!
+
+#### as an entire snapshot of your code
+
+- it optimizes how it stores them to avoid redundancy & save space
+
+---
+
+Trail: What's Git?,How does it store things?
+
+### why does this matter?
+
+#### enables git to quickly & easily identify differences/sameness between trees
+
+#### enables git to merge code without conflict
+
+---
+Layout: module
+
+# What is a Git commit?
+
+---
+
+Trail: What's a commit?
+
+## a `commit` object + a `tree` object
+
+---
+
+Trail: What's a commit?
+
+## each commit is represented by a unique identifier
+
+- called a SHA
+
+---
+
+Trail: What's a commit?,SHAs
+
+### SHA
+
+- hash generated from the tree
+- deterministically unique
+
+---
+
+Trail: What's a commit?,SHAs
+
+### `git log` shows the SHAs
+
+---
+
+Trail: What's a commit?,SHAs
+
+### note on git log
+
+- this is the output by default
+- through some flags, you can make it look like this
+- (here's how)
+- for the rest of this talk I'm going to show the git log in this format
+  - and I'll call it `git loggg` to make it obvious this isn't the default behavior
+  - note that you too can make your terminal recognize this command by using aliases
+
+---
+
+Trail: What's a commit?
+
+## your working directory is always pointed at a specific commit/hash
+
+---
+Layout: module
+
+# Stages of work
+
+---
+
+Trail: Stages of work
+
+## Wheel! Of! Committing!
+
+---
+
+Trail: Stages of work,Wheel! Of! Committing!
+
+### 1. unmodified
+
+### 2. modified (& untracked)
+
+### 3. staged
+
+### 1. committed (same as unmodified, but pointing at a new commit)
+
+---
+
+Trail: Stages of work,Wheel! Of! Committing!
+
+## how do we transition between stages?
+
+### 1-2
+
+### 2-3
+
+### 3-1
+
+### 2-1
+
+Notes:
+
+...
+
+this is how we ADD changes....and if you're using git, you're likely pretty familiar with this. But we're here to rewrite history.
+
+---
 Footer: false
 
 <!-- .slide: data-background="/images/title.jpg" class="title" -->
@@ -173,7 +326,7 @@ Footer: false
 <p>
   <svg class="icon">
     <use xlink:href="#si-zocial-cloudapp" />
-  </svg>stevenhicks.me/talkUrl
+  </svg>stevenhicks.me/rewriting-history-with-git
 </p>
 
 Notes:
