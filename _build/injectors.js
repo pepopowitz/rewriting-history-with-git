@@ -89,14 +89,13 @@ function injectLineNumbers(slide) {
   const regex = /^LineNumbers: (.*)$/m;
 
   const match = slide.match(regex);
-
   if (!match) {
     return slide;
   }
 
   const lineNumbers = match[1];
 
-  const codeRegex = /```(\S*)((.|\n)*)```/m;
+  const codeRegex = /```(\S*)\n((.|\n)*)```/m;
   const codeMatch = slide.match(codeRegex);
 
   if (!codeMatch) {
