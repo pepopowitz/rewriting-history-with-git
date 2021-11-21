@@ -33,3 +33,5 @@ Trail: Replaying changes
 - I created a branch from the wrong commit/branch and I want to move it
 
 ---
+
+TODO: rebasing is like winding the wheel of git back a few turns, then checking out a different commit, then letting the wheel spin back forward

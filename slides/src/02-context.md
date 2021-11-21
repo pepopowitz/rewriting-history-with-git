@@ -8,62 +8,44 @@ Trail: Context
 
 ## Why are we here?
 
+### Git is scary
+
+<!-- .element: class="fragment" -->
+
+Notes:
+
+Trying new things is scary.
+
+Trying new things _with Git_ is extra scary.
+
+There are high stakes: if I mess up my Git history, I've lost all my work!
+
+That would not only make me angry and sad, it would set me back a couple days and force me to redo stuff.
+
+So it's pretty easy to justify playing it safe and sticking to the things we know how to do.
+
+Commit, push, pull. Commit, push, pull. Commit, push, pull.
+
+...
+
+but There's so much more to Git than `commit`, `push`, `pull`
+
+...
+
+One of my favorite things to with git is rewrite history
+
+And there are very very many ways to do that
+
 ---
 
 Trail: Context
 
-## Goal for today
+## Goals for today
 
----
+### 1. Give you a **deeper understanding** of Git
 
-Trail: Context
+### 2. Get you comfortable **rewriting history** with Git
 
-## How we're going to get there
-
-- we're going to use the console!!!
-  - I used to be scared of it too
-
----
-
-Trail: Context
-
-## Setting the scene
-
----
-
-Trail: Context, Setting The Scene
-
-#### wtf is bill & ted's
-
----
-
-Trail: Context, Setting The Scene
-
-#### who tf are bill & ted
-
----
-
-Trail: Context, Setting The Scene
-
-#### why do we need to help them pass their history final
-
----
-
-Trail: Context, Setting The Scene
-
-#### how are we going to help them pass their history final
-
----
-
-Trail: Context, Setting The Scene
-
-seek this git log:
-
-```
-- form basis of utopian society (now)
-- deliver history report (2 hrs ago)
-- collect historical figures (4 hrs ago)
-- acquire phone booth from rufus (12 hrs ago)
-```
+Notes:
 
 ---

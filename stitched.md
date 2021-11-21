@@ -84,15 +84,616 @@ Trail: Context
 
 ## Why are we here?
 
+### Git is scary
+
+<!-- .element: class="fragment" -->
+
+Notes:
+
+Trying new things is scary.
+
+Trying new things _with Git_ is extra scary.
+
+There are high stakes: if I mess up my Git history, I've lost all my work!
+
+That would not only make me angry and sad, it would set me back a couple days and force me to redo stuff.
+
+So it's pretty easy to justify playing it safe and sticking to the things we know how to do.
+
+Commit, push, pull. Commit, push, pull. Commit, push, pull.
+
+...
+
+but There's so much more to Git than `commit`, `push`, `pull`
+
+...
+
+One of my favorite things to with git is rewrite history
+
+And there are very very many ways to do that
+
 ---
 
 Trail: Context
 
-## Goal for today
+## Goals for today
+
+### 1. Give you a **deeper understanding** of Git
+
+### 2. Get you comfortable **rewriting history** with Git
+
+Notes:
+
+---
+Layout: module
+
+# A Deeper Understanding of Git
+
+---
+Trail: Deeper Understanding
+
+# What's Git?
 
 ---
 
-Trail: Context
+Trail: Deeper Understanding, What's Git?
+
+## Source code management (SCM)
+
+### Keeps a record of your changes
+
+<!-- .element: class="fragment" -->
+
+### Helps engineers collaborate on code
+
+<!-- .element: class="fragment" -->
+
+Notes:
+
+the silly answer:
+
+the url is git-scm.com
+
+that's what the scm stands for
+
+...
+
+As your code changes over time, Git helps you keep a record of the changes.
+
+When you need to know why a change was made, or who made it (so you can ask them nicely if they remember any details), you get information from your Git history.
+
+...
+
+When multiple engineers want to collaborate on a project, Git helps them work independently until they're ready to integrate their changes.
+
+---
+
+Trail: Deeper Understanding, What's Git?
+
+## **Distributed** Source Control
+
+### No single source of truth
+
+<!-- .element: class="fragment" -->
+
+### You choose who gets your changes
+
+<!-- .element: class="fragment" -->
+
+Notes:
+
+as opposed to centralized
+
+which have a single source of truth for the codebase, on a server somewhere.
+
+when you commit to centralized source control, your changes are persisted immediately on the server
+
+and they're available immediately to the rest of your team
+
+...
+
+with a distributed system like Git,
+
+there's no single source of truth.
+
+No server.
+
+though most teams use a service like GitHub or GitLab to act as a centralized host.
+
+...
+
+When you commit changes, your work is only available to you, on your local system.
+
+you can choose to push those changes anywhere -- or nowhere.
+
+---
+
+Trail: Deeper Understanding,What's Git?,Distributed VCS
+
+## You have freedom to rewrite the history of your code
+
+Notes:
+
+The ability to work in a codebase isolated from the rest of your team
+
+gives you the freedom to rewrite the history of your code.
+
+When you don't have to worry about immediately updating the single source of truth,
+
+you can write and rewrite your commits many times
+
+before sharing them with the rest of your team.
+
+---
+
+Trail: Deeper Understanding
+
+# What does Git store?
+
+Notes:
+
+how does it store your code & its history?
+
+---
+
+Trail: Deeper Understanding,What Does Git Store?
+
+## Everything is an **object**
+
+### folders, files, branches, tags, commits, ...
+
+Notes:
+
+If you were to build a source control system from scratch,
+
+how would you define the data model?
+
+_Folders_ contain more _folders_ and _files_; branches contain folders and files; I commit changes to folders and files;
+
+Git abstracts all of these as "objects"
+
+TODO: some sort of illustration here?
+
+---
+
+Trail: Deeper Understanding,What Does Git Store?
+
+## TODO: objects are related to each other by trees somehow???
+
+---
+
+Trail: Deeper Understanding,What Does Git Store?
+
+## An entire snapshot per commit
+
+### Not a diff!
+
+TODO: some sort of illustration here
+
+Notes:
+
+Git captures an entire snapshot of your codebase in every commit.
+
+It's not a diff! It's the entire codebase, for every commit
+
+it optimizes how it stores them to avoid redundancy & save space
+
+---
+
+Trail: Deeper Understanding,What Does Git Store?
+
+## Why do we care?
+
+### Enables Git to quickly identify actual differences
+
+### Enables Git to merge code with fewer conflicts
+
+Notes:
+
+When two files are the same underlying _object_, Git can identify quickly that they haven't changed.
+
+When two branches in a repository contain identical subtrees represented by the same _object_, Git recognizes that nothing has changed.
+
+When a single file is changed, the majority of the tree stays the same, and Git can quickly identify the limbs that are different.
+
+this enables it to generate the diffs you're used to seeing, quickly and efficiently
+
+...
+
+When you write and rewrite your commits, Git compares and traverses subtrees to determine the final state.
+
+This is easier and faster than if it were scouring folders and files for differences.
+
+Less user intervention is needed to resolve the final state.
+
+---
+Trail: Deeper Understanding
+
+# What's a Git commit?
+
+Notes:
+
+represents a moment in time in your code
+
+What changed?
+
+What did it change from and what did it change to?
+
+When did it change and who changed it?
+
+---
+
+Trail: Deeper Understanding,What's A Commit?
+
+## a **`commit`** object + a **`tree`** object
+
+Notes:
+
+And recall that Git stores all information as objects.
+
+When you create a Git commit, there are two objects written into Git's storage:
+
+...
+
+the commit contains meta information like "who made the change and when did they make it".
+
+the tree represents a snapshot of the entire codebase at this moment.
+
+...
+
+Each commit in your Git history (or log) contains both of those objects.
+
+Even if you change only a single line in a single file and commit it, Git doesn't just store that one line change —
+
+it stores information about the change, and an entire snapshot of the codebase.
+
+---
+
+Trail: Deeper Understanding,What's A Commit?
+
+## Each commit is represented by a **unique identifier** (SHA)
+
+### The SHA is a hash generated from the tree
+
+<!-- .element: class="fragment" -->
+
+### It's deterministically unique
+
+<!-- .element: class="fragment" -->
+
+Notes:
+
+When a commit is written to your Git log, Git generates an identifier for it
+
+you'll often hear the identifier referred to as the "SHA"
+
+because it's generated by the SHA-1 checksum algorithm
+
+...
+
+Which is an algorithm to generate a hash based on the exact tree of changes
+
+and which happens to be deterministically unique
+
+so any specific set of code generates a different value than another set that differs by even one single character.
+
+---
+
+Trail: Deeper Understanding,What's A Commit?,SHAs
+
+TODO: show the log here with SHA's
+
+Notes:
+
+If you run the command `git log` in a directory managed by Git,
+
+you can see the SHA of each commit —
+
+it's the cryptic sequence of characters representing each commit.
+
+You might have checked out a specific commit by its SHA before with a command like `git checkout SHA`
+
+---
+
+Trail: Deeper Understanding,What's A Commit?
+
+## Notes on `git log`
+
+---
+
+Trail: Deeper Understanding,What's A Commit?,git log
+
+IMAGE: this is the output by default
+
+---
+
+Trail: Deeper Understanding,What's A Commit?,git log
+
+IMAGE: through some flags, you can make it look like this
+
+---
+
+Trail: Deeper Understanding,What's A Commit?,git log
+
+TODO: - for the rest of this talk I'm going to show the git log in this format
+
+Notes:
+
+- and I'll call it `git loggg` to make it obvious this isn't the default behavior
+- note that you too can make your terminal recognize this command by using aliases
+
+---
+
+Trail: Deeper Understanding,What's A Commit?
+
+## Your working directory always points at a specific commit/hash
+
+IMAGE: some illustration?
+
+---
+Layout: module
+
+# Stages of Work
+
+---
+
+Trail: Stages of work
+
+## Wheel! Of! Git!
+
+IMAGE: illustration like wheel of fortune
+
+Notes:
+
+the stages of working in git are like a wheel
+
+you move through the stages by spinning the wheel
+
+---
+
+Trail: Stages of work,Wheel! Of! Git!
+
+### 1. Unmodified
+
+IMAGE: wheel of committing 1 (make sure to show SHA so I can show a different one later)
+
+Notes:
+
+you have no local changes.
+
+---
+
+Trail: Stages of work,Wheel! Of! Git!
+
+### 2. Modified (or Untracked)
+
+IMAGE: wheel of committing 2
+
+Notes:
+
+once you change some files and save them,
+
+the wheel spins forward one section
+
+and we're now in the "modified" or "untracked" state
+
+modified: a file already in the repository has been updated
+
+untracked: a new file has been added that is not yet in the repository
+
+---
+
+Trail: Stages of work,Wheel! Of! Git!
+
+### 3. Staged
+
+IMAGE: wheel of committing 3
+
+Notes:
+
+then we can move our changes to a "staging" area
+
+this moves us forward to the `staged` sector of the wheel
+
+---
+
+Trail: Stages of work,Wheel! Of! Git!
+
+### 1. Committed
+
+#### Same as unmodified, but now pointing at a new commit
+
+IMAGE: wheel of committing 1 again
+
+Notes:
+
+and then we commit those staged changes
+
+and the wheel is back where it started,
+
+in an "unmodified" position, but pointed at a different commit
+
+---
+
+Trail: Stages of work,Wheel! Of! Git!
+
+## Transitioning states
+
+---
+
+Trail: Stages of work,Wheel! Of! Git!,Transitioning States
+
+### 1-2
+
+IMAGE: transitioning from 1 to 2
+
+#### Save your changes
+
+IMAGE: gst modified/untracked
+
+Notes:
+
+When you save them, Git automatically detects your changes.
+
+If you've saved changes to an existing file, the changes enter the Modified state.
+
+If you've saved changes to a new file, the file enters the Untracked state.
+
+---
+
+Trail: Stages of work,Wheel! Of! Git!,Transitioning States
+
+### 2-3
+
+IMAGE: transitioning from 2 to 3
+
+#### `git add ./path-to-add`
+
+IMAGE: gst staged
+
+Notes:
+
+`path-to-add` can be an individual filename,
+
+a folder that contains multiple modified/untracked files,
+
+or even `.` to represent adding _all_ changed files.
+
+...
+
+Once you've staged your changes, you can check your local working status with `git status`. The results will look like this:
+
+---
+
+Trail: Stages of work,Wheel! Of! Git!,Transitioning States
+
+### 3-1 (forward)
+
+IMAGE: transitioning from 3 to 1 (forward)
+
+#### `git commit -m "This is my commit message"`
+
+IMAGE: gst unmodified
+
+Notes:
+
+With our changes staged, we can write a commit to our Git history.
+
+There are many flags and arguments you can use in the `git commit` command.
+
+My favorite flavor is this one
+
+...
+
+We can see our new commit in our log, by checking the status:
+
+and we're now back at stage 1 of the wheel!
+
+Pointed at a particular commit, with no local changes.
+
+---
+
+Trail: Stages of work,Wheel! Of! Git!,Transitioning States
+
+IMAGE: wheel showing multiple rotations/commits
+
+Notes:
+
+As we continue our work, we follow this wheel of...
+
+making changes
+
+saving them
+
+staging them
+
+committing them
+
+And with each commit, we build a history of changes.
+
+---
+
+Trail: Stages of work,Wheel! Of! Git!,Transitioning States
+
+### 2-1 (forward)
+
+IMAGE: transitioning from 2 to 1 (forward)
+
+#### `git commit -a -m "My commit message"`
+
+Notes:
+
+You might be comfortable enough with changes that you want to skip the staging area
+
+it is possible to directly commit modified files.
+
+The `git commit` command includes a `-a` argument that will add all Modified changes
+
+...
+
+for untracked you need to add them to staging area first
+
+(but you can assign an alias to do this all in one command)
+
+...
+
+This used to be my default mode -- just go from modified/untracked to committed
+
+because what's the point of staging?
+
+But the staging area gives you control over what gets committed
+
+---
+
+Trail: Stages of work,Wheel! Of! Git!,Transitioning States
+
+LineNumbers: 1-2|3-4
+
+### Why use the staging area?
+
+IMAGE: demonstrate two logical commits in my changes
+
+```bash
+git add ./calendar.js
+git commit -m "Update calendar with new rules"
+git add ./user-profile.js
+git commit -m "Update user profile with new design"
+```
+
+Notes:
+
+You can stage a subset of your changes
+
+And if you've made a bunch of changes that feel like they're logically two separate commits,
+
+stage some of them and commit those, then commit the rest of the changes separately.
+
+This suggests that different changes can be in different stages of the wheel
+
+which is absolutely true!
+
+...
+
+this is how we ADD changes....and if you're using git, you're likely pretty familiar with this.
+
+But you can also spin the wheel backward -- roll back a commit, unstage work, ...
+
+And this is where we're going to start rewriting history.
+
+---
+Layout: module
+
+# Rewriting History
+
+Notes:
+
+with a deeper understanding of git, we're ready for our second goal of the day:
+
+becoming more comfortable with rewriting history
+
+---
+
+Trail: Rewriting History
 
 ## How we're going to get there
 
@@ -141,169 +742,6 @@ seek this git log:
 - collect historical figures (4 hrs ago)
 - acquire phone booth from rufus (12 hrs ago)
 ```
-
----
-Layout: module
-
-# What is Git?
-
----
-
-Trail: What's Git?
-
-## source control (duh)
-
----
-
-Trail: What's Git?
-
-## Distributed VCS
-
----
-
-Trail: What's Git?,Distributed VCS
-
-### vs centralized vcs
-
----
-
-Trail: What's Git?,Distributed VCS
-
-### why does this matter?
-
----
-
-Trail: What's Git?
-
-## How does git store things?
-
----
-
-Trail: What's Git?,How does it store things?
-
-### everything is an object
-
-#### folders, files, branches, tags, commits, ...
-
-#### they're related to each other buy trees somehow???
-
----
-
-Trail: What's Git?,How does it store things?
-
-### not as a diff!
-
-#### as an entire snapshot of your code
-
-- it optimizes how it stores them to avoid redundancy & save space
-
----
-
-Trail: What's Git?,How does it store things?
-
-### why does this matter?
-
-#### enables git to quickly & easily identify differences/sameness between trees
-
-#### enables git to merge code without conflict
-
----
-Layout: module
-
-# What is a Git commit?
-
----
-
-Trail: What's a commit?
-
-## a `commit` object + a `tree` object
-
----
-
-Trail: What's a commit?
-
-## each commit is represented by a unique identifier
-
-- called a SHA
-
----
-
-Trail: What's a commit?,SHAs
-
-### SHA
-
-- hash generated from the tree
-- deterministically unique
-
----
-
-Trail: What's a commit?,SHAs
-
-### `git log` shows the SHAs
-
----
-
-Trail: What's a commit?,SHAs
-
-### note on git log
-
-- this is the output by default
-- through some flags, you can make it look like this
-- (here's how)
-- for the rest of this talk I'm going to show the git log in this format
-  - and I'll call it `git loggg` to make it obvious this isn't the default behavior
-  - note that you too can make your terminal recognize this command by using aliases
-
----
-
-Trail: What's a commit?
-
-## your working directory is always pointed at a specific commit/hash
-
----
-Layout: module
-
-# Stages of Work
-
----
-
-Trail: Stages of work
-
-## Wheel! Of! Committing!
-
----
-
-Trail: Stages of work,Wheel! Of! Committing!
-
-### 1. unmodified
-
-### 2. modified (& untracked)
-
-### 3. staged
-
-### 1. committed (same as unmodified, but pointing at a new commit)
-
----
-
-Trail: Stages of work,Wheel! Of! Committing!
-
-## how do we transition between stages?
-
-### 1-2
-
-### 2-3
-
-### 3-1
-
-### 2-1
-
-Notes:
-
-...
-
-this is how we ADD changes....and if you're using git, you're likely pretty familiar with this. But we're here to rewrite history.
-
----
 Layout: module
 
 # Undoing Changes
@@ -616,6 +1054,8 @@ Trail: Replaying changes
 - I created a branch from the wrong commit/branch and I want to move it
 
 ---
+
+TODO: rebasing is like winding the wheel of git back a few turns, then checking out a different commit, then letting the wheel spin back forward
 Layout: module
 
 # Replaying Changes With Modifications
