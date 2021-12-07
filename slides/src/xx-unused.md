@@ -55,3 +55,9 @@ var x = y;
 ```
 
 ---
+
+<!-- .slide: data-background-video="/images/computers.webm" data-background-size="750px" data-background-color="red" -->
+
+background video that autoplays, with sound!
+
+---

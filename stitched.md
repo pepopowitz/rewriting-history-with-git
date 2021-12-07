@@ -8,6 +8,7 @@ revealOptions:
   display: flex
   disableLayout: false
 css: css/custom.css
+scripts: scripts/reloadSvgBackgrounds.js
 preprocessor: _build/inject.js
 highlightTheme: 'mono-blue'
 width: '100%'
@@ -419,7 +420,7 @@ TODO: - for the rest of this talk I'm going to show the git log in this format
 
 Notes:
 
-- and I'll call it `git loggg` to make it obvious this isn't the default behavior
+- and I'll call it `git loggy` to make it obvious this isn't the default behavior
 - note that you too can make your terminal recognize this command by using aliases
 
 ---
@@ -435,13 +436,15 @@ Layout: module
 
 # Stages of Work
 
+Notes:
+
+stages can be represented by a game I like to call...
+
 ---
 
+<!-- .slide: data-background="/images/wheelofgit.svg" -->
+
 Trail: Stages of work
-
-## Wheel! Of! Git!
-
-IMAGE: illustration like wheel of fortune
 
 Notes:
 
@@ -451,11 +454,11 @@ you move through the stages by spinning the wheel
 
 ---
 
+<!-- .slide: data-background="/images/wheel-1-static.svg" -->
+
 Trail: Stages of work,Wheel! Of! Git!
 
 ### 1. Unmodified
-
-IMAGE: wheel of committing 1 (make sure to show SHA so I can show a different one later)
 
 Notes:
 
@@ -463,11 +466,17 @@ you have no local changes.
 
 ---
 
+<!-- .slide: data-background="/images/wheel-1-2-animated.svg" -->
+
+Trail: Stages of work,Wheel! Of! Git!
+
+---
+
+<!-- .slide: data-background="/images/wheel-2-static.svg" -->
+
 Trail: Stages of work,Wheel! Of! Git!
 
 ### 2. Modified (or Untracked)
-
-IMAGE: wheel of committing 2
 
 Notes:
 
@@ -483,11 +492,11 @@ untracked: a new file has been added that is not yet in the repository
 
 ---
 
+<!-- .slide: data-background="/images/wheel-3-static.svg" -->
+
 Trail: Stages of work,Wheel! Of! Git!
 
 ### 3. Staged
-
-IMAGE: wheel of committing 3
 
 Notes:
 
@@ -497,13 +506,11 @@ this moves us forward to the `staged` sector of the wheel
 
 ---
 
+<!-- .slide: data-background="/images/wheel-4-static.svg" -->
+
 Trail: Stages of work,Wheel! Of! Git!
 
 ### 1. Committed
-
-#### Same as unmodified, but now pointing at a new commit
-
-IMAGE: wheel of committing 1 again
 
 Notes:
 
@@ -664,6 +671,8 @@ Notes:
 
 You can stage a subset of your changes
 
+TODO: find a place to mention that you can have changes in both staged & unstaged states
+
 And if you've made a bunch of changes that feel like they're logically two separate commits,
 
 stage some of them and commit those, then commit the rest of the changes separately.
@@ -697,7 +706,34 @@ Trail: Rewriting History
 
 ## How we're going to get there
 
-### With a console
+### Our tools
+
+---
+
+Trail: Rewriting History, Our Tools
+
+### console
+
+TODO: expand this
+
+- console (today)
+  - there's zero reason you can't do this with a gui
+- git status
+  - what's in my current working directory?
+    - show example?
+  - in a gui that might be listing files in different boxes
+- git log
+  - what it's in my commit history?
+  - git loggy
+  - in a gui it might show you a nice visual log
+- git reflog
+  - what actions have I taken in this repo?
+    - show example
+  - may or may not be accessible in your gui!
+
+---
+
+TODO: ditch this?
 
 ### With a phone booth
 
@@ -724,6 +760,12 @@ I apologize for using a movie from 1989 iin this talk
 but I am old and it's what I know
 
 If there's an appropriate replacement made more recently, pretend that's what I'm talking about.
+
+---
+
+Layout: module
+
+# **Spoiler Alert!!!**
 
 ---
 
@@ -763,14 +805,15 @@ IMAGE: future utopian society
 
 Trail: Context, Setting The Scene
 
-LineNumbers: 1,5|1,4|1,3|1,2
+LineNumbers: 1,6|1,5|1,4|1,3|1,2
 
 ```text
 > git loggy
-a1a1a1a1a acquire phone booth at the circle k
-b2b2b2b2b collect historical figures
-c3c3c3c3c find napoleon at the waterpark
-d4d4d4d4d deliver history report
+e5e5e5e5e 5) form basis for future utopian society
+d4d4d4d4d 4) deliver history report
+c3c3c3c3c 3) find napoleon at the waterpark
+b2b2b2b2b 2) collect historical figures
+a1a1a1a1a 1) acquire phone booth at the circle k
 ```
 
 IMAGE: these 4 things
@@ -786,201 +829,544 @@ Layout: module
 
 # Undoing Changes
 
-## I made changes that I haven't committed and I want to undo them.
+## I made changes that **I haven't committed** and I want to undo them.
+
+Notes:
+
+haven't committed -- these are local changes that I have,
+
+in an untracked, unstaged, or staged state
+
+and as you might expect, our strategies here depend on
+
+_which_ of those states your work is in
+
+and where we are on the wheel! of! git!
 
 ---
 
 Trail: Undoing changes
 
-## It depends
+## Case: "I want to **unstage** staged changes to a file"
 
-on where we are on the wheel! of! commits!
+IMAGE: from staged work to unstaged on wheel of git
 
 ---
 
-Trail: Undoing changes
+Trail: Undoing changes,Unstage staged changes
 
-## Case: "I want to discard unstaged changes to a file"
+LineNumbers: 1|5
 
 ### Scenario
 
-### Command
+```bash
+> git status
+On branch main
+Changes to be committed:
+  (use "git restore --staged (file)..." to unstage)
+        modified:   3_find_napoleon_at_waterpark.md
+```
 
-- `git restore`
+---
 
-  - `--worktree` is assumed
+Trail: Undoing changes,Unstage staged changes
+
+LineNumbers: 1|5-6
+
+### Scenario
+
+```diff
+> git diff --staged
+
+ - Ted's brother Deacon ditches Napoleon at bowling alley.
+ - The boys leave the other figures at the mall.
+-- Bill & Ted find Napoleon at a waterpark.
++- Bill & Ted leave Napoleon at a waterpark.
+ - Ted's dad arrests the other figures for destroying the mall.
+```
+
+---
+
+Trail: Undoing changes,Unstage staged changes
+
+LineNumbers: 1|2,4,7
+
+### Resolution
+
+#### `git restore --staged ./path`
+
+```bash
+> git restore --staged .
+> git status
+On branch main
+Changes not staged for commit:
+  (use "git add (file)..." to update what will be committed)
+  (use "git restore (file)..." to discard changes in working directory)
+        modified:   3_find_napoleon_at_waterpark.md
+
+no changes added to commit (use "git add" and/or "git commit -a")
+```
+
+---
 
 ### Real-life Examples
 
+- decide against committing some work 🤷
+<!-- .element: class="fragment" -->
+- partial staging: stage all, then unstage unrelated things
+<!-- .element: class="fragment" -->
+
+Notes:
+
+(2) sometimes an easier way to partially stage
+
 ---
 
 Trail: Undoing changes
 
-## Case: "I want to unstage staged changes to a file"
+## Case: "I want to discard **unstaged** changes to a file"
 
-- `git restore --staged`
+IMAGE: unstaged work to no changes on wheel of git
+
+---
+
+Trail: Undoing changes,Discard unstaged changes
+
+LineNumbers: 1|3,6|8
 
 ### Scenario
 
-### Command
+```bash
+> git status
+On branch main
+Changes not staged for commit:
+  (use "git add (file)..." to update what will be committed)
+  (use "git restore (file)..." to discard changes in working directory)
+        modified:   3_find_napoleon_at_waterpark.md
+
+no changes added to commit (use "git add" and/or "git commit -a")
+```
+
+---
+
+Trail: Undoing changes,Discard unstaged changes
+
+LineNumbers: 1|3-7|11-12
+
+### Scenario
+
+```diff
+> git diff
+
+diff --git a/3_find_napoleon_at_waterpark.md b/3_find_napoleon_at_waterpark.md
+index 2fe075c..adb9118 100644
+--- a/3_find_napoleon_at_waterpark.md
++++ b/3_find_napoleon_at_waterpark.md
+@@ -2,5 +2,5 @@
+
+ - Ted's brother Deacon ditches Napoleon at bowling alley.
+ - The boys leave the other figures at the mall.
+-- Bill & Ted find Napoleon at a waterpark.
++- Bill & Ted leave Napoleon at a waterpark.
+ - Ted's dad arrests the other figures for destroying the mall.
+```
+
+---
+
+Trail: Undoing changes,Discard unstaged changes
+
+LineNumbers: 1|2-4
+
+### Resolution
+
+#### `git restore ./path`
+
+```bash
+> git restore .
+> git status
+On branch main
+nothing to commit, working tree clean
+```
+
+---
+
+Trail: Undoing changes,Discard unstaged changes
 
 ### Real-life Examples
 
+- accidentally type a character in a file and suddenly your app doesn't work anymore 😅
+<!-- .element: class="fragment" -->
+- leave a stray console.log 😬
+<!-- .element: class="fragment" -->
+- hack your app to make a certain flow happen temporarily 🪚
+<!-- .element: class="fragment" -->
+- decide against a change 🙅‍♀️
+<!-- .element: class="fragment" -->
+
 ---
 
 Trail: Undoing changes
 
-## Case: "I want to discard staged changes to a file"
+## Case: "I want to discard **staged** changes to a file"
 
-### Scenario
+IMAGE: from staged changes to no changes on wheel
 
-### Command
+---
 
-- `git restore --staged --worktree`
+Trail: Undoing changes,Discard staged changes
+
+### Resolution
+
+#### `git restore --staged --worktree`
+
+Notes:
+
+- `--worktree` was assumed in our prior example (undo unstaged work)
+
+---
+
+Trail: Undoing changes,Discard staged changes
 
 ### Real-life Examples
 
+- decide against committing some work 🤷
+<!-- .element: class="fragment" -->
+
+Notes:
+
+maybe you want to switch to another branch & don't care about the work here
+
 ---
 
 Trail: Undoing changes
 
-## Case: "I want to discard changes to an untracked file"
+## Case: "I want to discard changes to an **untracked** file"
 
-### Scenario
+IMAGE: from untracked file to no changes on wheel of git
 
-### Command
+---
 
-- ` git clean`
+Trail: Undoing changes,Discard untracked file
+
+### Resolution
+
+#### ` git clean ./path`
+
+---
+
+Trail: Undoing changes,Discard untracked file
+
+### Notes
+
 - probably need either `-i` or `-f` flag
   - `-i` is interactive - it asks you which files to reset
   - `-f` is force - just does all of them.
   - `-d` to include directories
+  - if you've changed a git config setting, you might not
+
+---
+
+Trail: Undoing changes,Discard untracked file
 
 ### Real-life Examples
 
----
-
-Trail: Undoing changes
-
-## Case: "I want to discard all changes!"
-
-### Scenario
-
-### Command
-
-- `git clean -df && git restore --worktree --staged .`
-- make an alias for it!
-- or stash & forget about it :)
+- decide against committing some work 🤷
+<!-- .element: class="fragment" -->
 
 ---
 
 Trail: Undoing changes
 
-## Case: "I want to discard all changes but save it for later"
+## Case: "I just want to discard all files!!!"
 
-### Scenario
+###### `git clean -df . && git restore --staged --worktree .`
 
-### Command
+<!-- .element: class="fragment" -->
 
-- `git stash`
+###### `git config --global alias.discard "\!git clean -df . && git restore --staged --worktree ."`
+
+<!-- .element: class="fragment" -->
+
+Notes:
+
+combine the previous few slides
+
+and then create an alias for it to save yourself the trouble of typing all that.
+
+---
+
+Trail: Undoing changes
+
+## Case: "I want to discard all changes **but save them for later**"
+
+IMAGE: moving changes to a drawer somewhere labelled "stashes"
+
+---
+
+Trail: Undoing changes,Save changes for later
+
+### Resolution
+
+#### `git stash --include-untracked`
+
+<!-- .element: class="fragment" -->
+
+#### `git stash pop/apply`
+
+<!-- .element: class="fragment" -->
+
+Notes:
+
+saves it to a storage area named "stashes"
 
 ...and when you want it back, `git stash pop/apply`
+
 (pop removes it from the stashes queue, apply leaves it in the stashes queue.)
 
+---
+
+Trail: Undoing changes,Save changes for later
+
 ### Real-life Examples
+
+- switch branches to look into something 🕵️‍♂️
+<!-- .element: class="fragment" -->
+- set aside a failed experiment 🧪
+<!-- .element: class="fragment" -->
 
 ---
 Layout: module
 
 # Updating Commits
 
-## I committed something but it was not quite right.
+## I committed something but I want to change it.
 
 ---
 
 Trail: Updating commits
+
+IMAGE: updating a commit means updating the SHA
+
+---
+
+Trail: Updating commits ⚠️
 
 ## !!!Danger zone!!!!
 
-Be cautious when commits have been pushed to others!
+IMAGE: DANGER ZONE
 
-- if they have started more work based on that commit, things get real bad!!!
-- if they haven't started any work, they will probably want to delete the branch before re-fetching it.
+### Be cautious when commits have been pushed to others!
+
+TODO: what can happen when updated commits are pushed?
 
 ---
 
-Trail: Updating commits
+Trail: Updating commits ⚠️
+
+## I've updated a commit! Is it safe to push?
+
+- Only if **coordinated with others** active on this branch
+
+<!-- .element: class="fragment" -->
+
+- **Establish team practices** around pushing updated commits
+
+<!-- .element: class="fragment" -->
+
+Notes:
+
+---
+
+Trail: Updating commits ⚠️,Coordinating with others
+
+### Working alone?
+
+You're clear.
+
+---
+
+Trail: Updating commits ⚠️,Coordinating with others
+
+### Working with a pair?
+
+It's fine.
+
+Have them delete their local copy of the branch & re-pull it.
+
+<!-- .element: class="fragment" -->
+
+---
+
+Trail: Updating commits ⚠️,Coordinating with others
+
+### Working with someone who also made changes?
+
+It can be done.
+
+One of you pushes, the other gets their commits back onto the branch via merging/rebasing/cherry-picking
+
+<!-- .element: class="fragment" -->
+
+TODO: show them how to do this?
+
+---
+
+Trail: Updating commits ⚠️,Coordinating with others
+
+### Working with several people?
+
+**Establish team rules/guidance** & stick to it.
+
+---
+
+Trail: Updating commits ⚠️
+
+## Why would I ever want to update existing commits??
+
+---
+
+Trail: Updating commits ⚠️,Why update?
+
+TODO: build this out
+
+- all commits should be functional (makes git bisect possible)
+- more helpful for reviewers
+  - commits tell a story
+  - show a jon pr vs a pavlos pr
+- remove confusing false starts or misleading commit messages
+
+---
+
+Trail: Updating commits ⚠️
 
 ## Case: "I want to update my last commit"
 
-### Scenario
-
-### Command
-
-- `git commit --amend`
-- add things before running the command, or add the -a flag
-- amends the previous commit
-
-### Real-life Examples
-
-- update a commit message or body
-- add/update changes
-  - I accidentally included a comment or debugging statement in a previous commit
-- add a collaborator
-  - give credit where credit is due!
-  - show footer
-  - mention pear
+IMAGE: updating most recent commit
 
 ---
 
-Trail: Updating commits
+Trail: Updating commits ⚠️,Most recent commit
+
+### Resolution
+
+#### `git commit --amend`
+
+Notes:
+
+- amends the previous commit
+- including SHA!
+  - That SHA is a fingerprint of the code in its current state, so if that state changed, so did the SHA
+- add/stage things before running the command,
+  - or add the -a flag
+
+---
+
+Trail: Updating commits ⚠️,Most recent commit
+
+### Real-life Examples
+
+- improve a commit message 💪🏼
+<!-- .element: class="fragment" -->
+- add/update changes ➕
+<!-- .element: class="fragment" -->
+- remove a comment/debugging statement 🐛
+<!-- .element: class="fragment" -->
+- add a collaborator! 👥
+<!-- .element: class="fragment" -->
+
+---
+
+Trail: Updating commits ⚠️,Most recent commit,Giving credit
+
+TODO: show trailer
+
+IMAGE: github to show collaborators
+
+Notes:
+
+- we should give credit to collaborators!
+
+---
+
+Trail: Updating commits ⚠️,Most recent commit,Giving credit
+
+### [github.com/jonallured/pear](https://github.com/jonallured/pear)
+
+```
+TODO: show some pear commands
+```
+
+---
+
+Trail: Updating commits ⚠️
 
 ## Case: "I want to update an older commit"
 
-- we're going to get to this later
+IMAGE: please hold for this to come later
 
 ---
 Layout: module
 
 # Undoing Commits
 
-## I committed things and I want to undo them.
+## I've committed horrible things and I want to undo them.
 
 ---
 
-Trail: Undoing commits
+Trail: Undoing commits ⚠️
 
 ## !!!Danger zone!!!!
 
-Be cautious when commits have been pushed to others!
-
-- if they have started more work based on that commit, things get real bad!!!
-- if they haven't started any work, they will still probably want to delete the branch before re-fetching it.
+IMAGE: DANGER ZONE
 
 ---
 
-Trail: Updating commits
+Trail: Undoing commits ⚠️
 
 ## Question: is it the most recent commit?
 
 ---
 
-Trail: Updating commits,Most recent commit?
+Trail: Undoing commits ⚠️,Most recent commit?
 
 ## YES
 
 ---
 
-Trail: Updating commits,Most recent commit?,YES
+Trail: Undoing commits ⚠️,Most recent commit?,YES
 
-## Case: "I want to undo my last commit and save the results"
+## Case: "I want to undo my last commit(s)"
 
-### Scenario
+IMAGE: undoing most recent commit
 
-### Command
+Notes: this applies to the most recent N commits
 
-- `git reset`
-  - `--soft` or `--mixed` flags depend on what state you want the changes in (soft: staged or mixed: unstaged)
+---
+
+Trail: Undoing commits ⚠️,Most recent commit?,YES
+
+### Resolution
+
+#### `git reset ...`
+
+Notes:
+
+and there will be some arguments to this command
+
+- for starters, you _can_ give it a path if you want to reset specific files
+- it will assume you just mean everything
+
+- but also, we can tell Git what to do with the changes it resets
+
+---
+
+sjhsjhsjh here - break this stuff up (and swallow the --hard stuff from the future into here)
+
+Trail: Undoing commits ⚠️,Most recent commit?,YES,git reset
+
+### `git reset --soft`
+
+- `--soft` or `--mixed` flags depend on what state you want the changes in (soft: staged or mixed: unstaged)
 
 ```
 --mixed               reset HEAD and index
@@ -997,7 +1383,7 @@ Trail: Updating commits,Most recent commit?,YES
 
 ---
 
-Trail: Updating commits,Most recent commit?,YES
+Trail: Undoing commits ⚠️,Most recent commit?,YES
 
 ## Case: "I want to undo my last commit and never see it again"
 
@@ -1018,13 +1404,13 @@ Trail: Updating commits,Most recent commit?,YES
 
 ---
 
-Trail: Updating commits,Most recent commit?
+Trail: Undoing commits ⚠️,Most recent commit?
 
 ## NO
 
 ---
 
-Trail: Updating commits,Most recent commit?,NO
+Trail: Undoing commits ⚠️,Most recent commit?,NO
 
 ## Case: "I want to revert a commit without rewriting history"
 
@@ -1043,7 +1429,7 @@ Trail: Updating commits,Most recent commit?,NO
 
 ---
 
-Trail: Updating commits
+Trail: Undoing commits ⚠️
 
 ## Case: "Awwww @#$!#$#@ I committed secrets and I pushed them up"
 
@@ -1051,6 +1437,7 @@ Trail: Updating commits
 
 ### Command
 
+- remember the reflog? It tracks everything! So creds are hard to get rid of.
 - https://sparkbox.com/foundry/remove_file_from_git_history_with_git_filter-branch
 - cycle your credentials!!!!
 

@@ -23,3 +23,5 @@ This talk is built on [my reveal starter kit](https://github.com/pepopowitz/my-r
 ## Building
 
 `yarn build`
+
+The built assets can be found in a folder named `_site`.

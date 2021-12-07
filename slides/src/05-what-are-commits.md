@@ -110,7 +110,7 @@ TODO: - for the rest of this talk I'm going to show the git log in this format
 
 Notes:
 
-- and I'll call it `git loggg` to make it obvious this isn't the default behavior
+- and I'll call it `git loggy` to make it obvious this isn't the default behavior
 - note that you too can make your terminal recognize this command by using aliases
 
 ---

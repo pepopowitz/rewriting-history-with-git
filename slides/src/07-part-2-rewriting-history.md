@@ -14,7 +14,34 @@ Trail: Rewriting History
 
 ## How we're going to get there
 
-### With a console
+### Our tools
+
+---
+
+Trail: Rewriting History, Our Tools
+
+### console
+
+TODO: expand this
+
+- console (today)
+  - there's zero reason you can't do this with a gui
+- git status
+  - what's in my current working directory?
+    - show example?
+  - in a gui that might be listing files in different boxes
+- git log
+  - what it's in my commit history?
+  - git loggy
+  - in a gui it might show you a nice visual log
+- git reflog
+  - what actions have I taken in this repo?
+    - show example
+  - may or may not be accessible in your gui!
+
+---
+
+TODO: ditch this?
 
 ### With a phone booth
 
@@ -41,6 +68,12 @@ I apologize for using a movie from 1989 iin this talk
 but I am old and it's what I know
 
 If there's an appropriate replacement made more recently, pretend that's what I'm talking about.
+
+---
+
+Layout: module
+
+# **Spoiler Alert!!!**
 
 ---
 
@@ -80,14 +113,15 @@ IMAGE: future utopian society
 
 Trail: Context, Setting The Scene
 
-LineNumbers: 1,5|1,4|1,3|1,2
+LineNumbers: 1,6|1,5|1,4|1,3|1,2
 
 ```text
 > git loggy
-a1a1a1a1a acquire phone booth at the circle k
-b2b2b2b2b collect historical figures
-c3c3c3c3c find napoleon at the waterpark
-d4d4d4d4d deliver history report
+e5e5e5e5e 5) form basis for future utopian society
+d4d4d4d4d 4) deliver history report
+c3c3c3c3c 3) find napoleon at the waterpark
+b2b2b2b2b 2) collect historical figures
+a1a1a1a1a 1) acquire phone booth at the circle k
 ```
 
 IMAGE: these 4 things

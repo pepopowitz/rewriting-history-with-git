@@ -2,13 +2,15 @@ Layout: module
 
 # Stages of Work
 
+Notes:
+
+stages can be represented by a game I like to call...
+
 ---
 
+<!-- .slide: data-background="/images/wheelofgit.svg" -->
+
 Trail: Stages of work
-
-## Wheel! Of! Git!
-
-IMAGE: illustration like wheel of fortune
 
 Notes:
 
@@ -18,11 +20,11 @@ you move through the stages by spinning the wheel
 
 ---
 
+<!-- .slide: data-background="/images/wheel-1-static.svg" -->
+
 Trail: Stages of work,Wheel! Of! Git!
 
 ### 1. Unmodified
-
-IMAGE: wheel of committing 1 (make sure to show SHA so I can show a different one later)
 
 Notes:
 
@@ -30,11 +32,17 @@ you have no local changes.
 
 ---
 
+<!-- .slide: data-background="/images/wheel-1-2-animated.svg" -->
+
+Trail: Stages of work,Wheel! Of! Git!
+
+---
+
+<!-- .slide: data-background="/images/wheel-2-static.svg" -->
+
 Trail: Stages of work,Wheel! Of! Git!
 
 ### 2. Modified (or Untracked)
-
-IMAGE: wheel of committing 2
 
 Notes:
 
@@ -50,11 +58,11 @@ untracked: a new file has been added that is not yet in the repository
 
 ---
 
+<!-- .slide: data-background="/images/wheel-3-static.svg" -->
+
 Trail: Stages of work,Wheel! Of! Git!
 
 ### 3. Staged
-
-IMAGE: wheel of committing 3
 
 Notes:
 
@@ -64,13 +72,11 @@ this moves us forward to the `staged` sector of the wheel
 
 ---
 
+<!-- .slide: data-background="/images/wheel-4-static.svg" -->
+
 Trail: Stages of work,Wheel! Of! Git!
 
 ### 1. Committed
-
-#### Same as unmodified, but now pointing at a new commit
-
-IMAGE: wheel of committing 1 again
 
 Notes:
 
@@ -230,6 +236,8 @@ git commit -m "Update user profile with new design"
 Notes:
 
 You can stage a subset of your changes
+
+TODO: find a place to mention that you can have changes in both staged & unstaged states
 
 And if you've made a bunch of changes that feel like they're logically two separate commits,
 

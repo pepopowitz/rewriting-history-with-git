@@ -1,0 +1,133 @@
+<svg width="1440" height="1024" viewBox="0 0 1440 1024" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<style>.wheel_684 {
+	animation: 10s linear 0s 1 normal forwards running wheel_684;
+		opacity: 0;
+}
+@keyframes wheel_684 {
+	0% {
+		opacity: 0;
+	}
+	10% {
+		opacity: 0;
+	}
+	15% {
+		opacity: 1;
+	}
+	35% {
+		opacity: 1;
+	}
+	40% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 0;
+	}
+}.GIT_387 {
+	animation: 10s linear 0s 1 normal forwards running GIT_387;
+		opacity: 0;
+}
+@keyframes GIT_387 {
+	0% {
+		opacity: 0;
+	}
+	30% {
+		opacity: 0;
+	}
+	35% {
+		opacity: 1;
+	}
+	40% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 0;
+	}
+}.OF_885 {
+	animation: 10s linear 0s 1 normal forwards running OF_885;
+		opacity: 0;
+}
+@keyframes OF_885 {
+	0% {
+		opacity: 0;
+	}
+	20% {
+		opacity: 0;
+	}
+	25% {
+		opacity: 1;
+	}
+	35% {
+		opacity: 1;
+	}
+	40% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 0;
+	}
+}.all_text_370 {
+	animation: 10s linear 0s 1 normal forwards running all_text_370;
+		transform: translateX(595.54px) translateY(302.41px) rotate(0deg);
+		transform-box: fill-box;
+		transform-origin: center;
+		
+		opacity: 0;
+}
+@keyframes all_text_370 {
+	0% {
+		transform: translateX(595.54px) translateY(302.41px) rotate(0deg);
+		opacity: 0;
+	}
+	35% {
+		opacity: 0;
+	}
+	40% {
+		transform: translateX(595.54px) translateY(302.41px) rotate(0deg);
+		opacity: 1;
+	}
+	100% {
+		transform: translateX(595.54px) translateY(302.41px) rotate(360deg);
+		opacity: 1;
+	}
+}
+</style>
+<g clip-path="url(#clip_0_471)" width="1440" height="1024" data-name="wheel of git">
+	<rect width="1440" height="1024" fill="white" data-name="wheel of git"/>
+	<ellipse fill="#C4C4C4" data-name="Ellipse 9" transform="translate(720 511)" rx="210" ry="210"/>
+	<ellipse fill="#C74646" data-name="Ellipse 8" transform="translate(720 511)" rx="102" ry="102"/>
+	<g transform="translate(595.55 302.42)" class="wheel_684" width="254.83" height="140.76" data-name="wheel!">
+		<path d="M10.656 91H18.72L23.52 57.592L24.096 53.464H24.48L25.056 57.592L29.856 91H37.92L47.424 20.44H37.824L33.696 57.112L33.504 59.416H32.736L32.448 57.112L28.032 20.44H20.544L16.128 57.112L15.84 59.416H15.072L14.88 57.112L10.752 20.44H1.152L10.656 91Z" fill="black" data-name="[Copy] WHEEL!" transform="translate(0 37.6) rotate(-28.16)"/>
+		<path d="M3.84 91H14.208V60.28H22.272V91H32.64V20.44H22.272V49.624H14.208V20.44H3.84V91Z" fill="black" data-name="[Copy] WHEEL!" transform="translate(63.38 8.14) rotate(-11.21)"/>
+		<path d="M3.84 91H27.552V80.344H14.208V60.952H23.808V49.624H14.208V31.096H27.552V20.44H3.84V91Z" fill="black" data-name="[Copy] WHEEL!" transform="translate(115.84 0) rotate(1.87)"/>
+		<path d="M3.84 91H27.552V80.344H14.208V60.952H23.808V49.624H14.208V31.096H27.552V20.44H3.84V91Z" fill="black" data-name="[Copy] WHEEL!" transform="translate(160.12 2.85) rotate(13.59)"/>
+		<path d="M3.84 91H27.936V81.4H14.208V20.44H3.84V91Z" fill="black" data-name="[Copy] WHEEL!" transform="translate(202.78 14.64) rotate(25.2)"/>
+		<path d="M6.048 71.992H12.096L14.688 20.44H3.456L6.048 71.992ZM4.032 91H14.112V80.344H4.032V91Z" fill="black" data-name="[Copy] WHEEL!" transform="translate(239.2 33.29) rotate(34.67)"/>
+	</g>
+	<g transform="translate(620.93 592.38)" class="GIT_387" width="201.36" height="130.7" data-name="GIT!">
+		<path d="M15.36 91.768C18.528 91.768 21.216 90.392 23.424 87.64L24.672 91H30.816V55.864H16.32V64.6H20.448V77.368C20.448 78.968 20.144 80.232 19.536 81.16C18.928 82.088 18.08 82.552 16.992 82.552C15.904 82.552 15.056 82.088 14.448 81.16C13.84 80.232 13.536 78.968 13.536 77.368V34.936C13.536 31.48 14.688 29.752 16.992 29.752C19.296 29.752 20.448 31.48 20.448 34.936V45.784H30.816V34.936C30.688 30.264 29.376 26.552 26.88 23.8C24.384 21.048 21.088 19.672 16.992 19.672C12.928 19.672 9.648 21.048 7.152 23.8C4.656 26.52 3.328 30.232 3.168 34.936V76.504C3.04 81.016 4.112 84.696 6.384 87.544C8.656 90.36 11.648 91.768 15.36 91.768Z" fill="black" data-name="[Copy] GIT!" transform="translate(45.76 0.05) rotate(23.03)"/>
+		<path d="M3.84 91H14.208V20.44H3.84V91Z" fill="black" data-name="[Copy] GIT!" transform="translate(79.02 12.45) rotate(5.27)"/>
+		<path d="M9.984 91H20.352V31.096H30.144V20.44H0.192V31.096H9.984V91Z" fill="black" data-name="[Copy] GIT!" transform="translate(101.1 14.77) rotate(-9.34)"/>
+		<path d="M6.048 71.992H12.096L14.688 20.44H3.456L6.048 71.992ZM4.032 91H14.112V80.344H4.032V91Z" fill="black" data-name="[Copy] GIT!" transform="translate(132.92 8.34) rotate(-26.04)"/>
+	</g>
+	<path d="M16.992 91.768C21.088 91.768 24.384 90.408 26.88 87.688C29.376 84.936 30.688 81.208 30.816 76.504V34.936C30.688 30.264 29.376 26.552 26.88 23.8C24.384 21.048 21.088 19.672 16.992 19.672C12.928 19.672 9.648 21.048 7.152 23.8C4.656 26.52 3.328 30.232 3.168 34.936V76.504C3.36 81.24 4.688 84.968 7.152 87.688C9.616 90.408 12.896 91.768 16.992 91.768ZM16.992 81.688C15.904 81.688 15.056 81.224 14.448 80.296C13.84 79.368 13.536 78.104 13.536 76.504V34.936C13.536 31.48 14.688 29.752 16.992 29.752C19.296 29.752 20.448 31.48 20.448 34.936V76.504C20.448 78.104 20.144 79.368 19.536 80.296C18.928 81.224 18.08 81.688 16.992 81.688ZM53.1375 91H63.5055V60.28H73.1055V49.624H63.5055V31.096H77.8095V20.44H53.1375V91ZM99.5805 71.992H105.629L108.221 20.44H96.9885L99.5805 71.992ZM97.5645 91H107.645V80.344H97.5645V91Z" fill="black" data-name="OF!" class="OF_885" transform="translate(666 460)"/>
+	<g transform="translate(595.54 302.41)" class="all_text_370" width="254.83" height="420.66" data-name="all text">
+		<g width="254.83" height="140.76" data-name="wheel!">
+			<path d="M10.656 91H18.72L23.52 57.592L24.096 53.464H24.48L25.056 57.592L29.856 91H37.92L47.424 20.44H37.824L33.696 57.112L33.504 59.416H32.736L32.448 57.112L28.032 20.44H20.544L16.128 57.112L15.84 59.416H15.072L14.88 57.112L10.752 20.44H1.152L10.656 91Z" fill="black" data-name="[Copy] WHEEL!" transform="translate(0 37.6) rotate(-28.16)"/>
+			<path d="M3.84 91H14.208V60.28H22.272V91H32.64V20.44H22.272V49.624H14.208V20.44H3.84V91Z" fill="black" data-name="[Copy] WHEEL!" transform="translate(63.38 8.14) rotate(-11.21)"/>
+			<path d="M3.84 91H27.552V80.344H14.208V60.952H23.808V49.624H14.208V31.096H27.552V20.44H3.84V91Z" fill="black" data-name="[Copy] WHEEL!" transform="translate(115.84 0) rotate(1.87)"/>
+			<path d="M3.84 91H27.552V80.344H14.208V60.952H23.808V49.624H14.208V31.096H27.552V20.44H3.84V91Z" fill="black" data-name="[Copy] WHEEL!" transform="translate(160.11 2.85) rotate(13.59)"/>
+			<path d="M3.84 91H27.936V81.4H14.208V20.44H3.84V91Z" fill="black" data-name="[Copy] WHEEL!" transform="translate(202.77 14.64) rotate(25.2)"/>
+			<path d="M6.048 71.992H12.096L14.688 20.44H3.456L6.048 71.992ZM4.032 91H14.112V80.344H4.032V91Z" fill="black" data-name="[Copy] WHEEL!" transform="translate(239.2 33.3) rotate(34.67)"/>
+		</g>
+		<g transform="translate(25.37 289.96)" width="201.36" height="130.7" data-name="GIT!">
+			<path d="M15.36 91.768C18.528 91.768 21.216 90.392 23.424 87.64L24.672 91H30.816V55.864H16.32V64.6H20.448V77.368C20.448 78.968 20.144 80.232 19.536 81.16C18.928 82.088 18.08 82.552 16.992 82.552C15.904 82.552 15.056 82.088 14.448 81.16C13.84 80.232 13.536 78.968 13.536 77.368V34.936C13.536 31.48 14.688 29.752 16.992 29.752C19.296 29.752 20.448 31.48 20.448 34.936V45.784H30.816V34.936C30.688 30.264 29.376 26.552 26.88 23.8C24.384 21.048 21.088 19.672 16.992 19.672C12.928 19.672 9.648 21.048 7.152 23.8C4.656 26.52 3.328 30.232 3.168 34.936V76.504C3.04 81.016 4.112 84.696 6.384 87.544C8.656 90.36 11.648 91.768 15.36 91.768Z" fill="black" data-name="[Copy] GIT!" transform="translate(45.77 0.05) rotate(23.03)"/>
+			<path d="M3.84 91H14.208V20.44H3.84V91Z" fill="black" data-name="[Copy] GIT!" transform="translate(79.03 12.45) rotate(5.27)"/>
+			<path d="M9.984 91H20.352V31.096H30.144V20.44H0.192V31.096H9.984V91Z" fill="black" data-name="[Copy] GIT!" transform="translate(101.11 14.77) rotate(-9.34)"/>
+			<path d="M6.048 71.992H12.096L14.688 20.44H3.456L6.048 71.992ZM4.032 91H14.112V80.344H4.032V91Z" fill="black" data-name="[Copy] GIT!" transform="translate(132.93 8.34) rotate(-26.04)"/>
+		</g>
+		<path d="M16.992 91.768C21.088 91.768 24.384 90.408 26.88 87.688C29.376 84.936 30.688 81.208 30.816 76.504V34.936C30.688 30.264 29.376 26.552 26.88 23.8C24.384 21.048 21.088 19.672 16.992 19.672C12.928 19.672 9.648 21.048 7.152 23.8C4.656 26.52 3.328 30.232 3.168 34.936V76.504C3.36 81.24 4.688 84.968 7.152 87.688C9.616 90.408 12.896 91.768 16.992 91.768ZM16.992 81.688C15.904 81.688 15.056 81.224 14.448 80.296C13.84 79.368 13.536 78.104 13.536 76.504V34.936C13.536 31.48 14.688 29.752 16.992 29.752C19.296 29.752 20.448 31.48 20.448 34.936V76.504C20.448 78.104 20.144 79.368 19.536 80.296C18.928 81.224 18.08 81.688 16.992 81.688ZM53.1375 91H63.5055V60.28H73.1055V49.624H63.5055V31.096H77.8095V20.44H53.1375V91ZM99.5805 71.992H105.629L108.221 20.44H96.9885L99.5805 71.992ZM97.5645 91H107.645V80.344H97.5645V91Z" fill="black" data-name="OF!" transform="translate(70.45 157.58)"/>
+	</g>
+</g>
+<defs><clipPath id="clip_0_471"><rect width="1440" height="1024"/></clipPath>
+</defs>
+</svg>

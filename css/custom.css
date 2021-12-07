@@ -1,13 +1,14 @@
 body {
-  --brand: #0d0d26;
-  --brand-context: #596a73;
-  --brand-medium: #8f2611;
-  --brand-module-bg: #596a73;
+  --brand: #0a061f;
+  --brand-context: #932424;
+  --brand-medium: #932424;
+  --brand-module-bg: #5a2525;
   --brand-light: #f7eee6;
   --brand-white: #fdfcfc;
   --brand-black: #222222;
+  --brand-orange: #cf9b27;
 
-  color: var(--brand-context);
+  color: var(--brand);
 }
 
 .speaker-controls-notes .value {
@@ -25,7 +26,8 @@ body {
   color: var(--brand-medium);
   font-weight: normal;
 }
-.reveal p strong {
+.reveal p strong,
+.reveal li strong {
   color: var(--brand-medium);
 }
 
@@ -44,6 +46,12 @@ body {
 .reveal .inverse.highlight h2,
 .reveal .inverse.highlight h3 {
   background-color: var(--brand-context);
+}
+
+.reveal .module h1 strong,
+.reveal .module h2 strong,
+.reveal .module h3 strong {
+  color: var(--brand-orange);
 }
 
 .reveal .trail {
@@ -99,21 +107,26 @@ body {
   text-shadow: 0 1px 6px var(--brand-black);
 }
 .reveal .title {
-  color: var(--brand-context);
-  text-align: left;
+  color: var(--brand);
+  align-items: end !important; /* I'm sorry */
 }
 .reveal .title h1 {
-  margin-bottom: 4rem;
   line-height: 1em;
+  margin: 0;
+  text-align: right;
+  width: 70%;
 }
-.reveal .title h2 {
-  margin-top: -20px;
+.reveal .title h2,
+.reveal .title p {
+  margin: 0.2em;
+  text-shadow: 0 1px 6px var(--brand-white);
 }
 .reveal .title svg {
-  fill: var(--brand-context);
+  fill: var(--brand);
   width: 2em;
   height: 1em;
   vertical-align: text-bottom;
+  text-shadow: 0 1px 6px var(--brand-white);
 }
 .reveal .module h1,
 .reveal .module h2,

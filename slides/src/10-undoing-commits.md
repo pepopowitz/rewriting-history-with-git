@@ -2,43 +2,64 @@ Layout: module
 
 # Undoing Commits
 
-## I committed things and I want to undo them.
+## I've committed horrible things and I want to undo them.
 
 ---
 
-Trail: Undoing commits
+Trail: Undoing commits ⚠️
 
 ## !!!Danger zone!!!!
 
-Be cautious when commits have been pushed to others!
-
-- if they have started more work based on that commit, things get real bad!!!
-- if they haven't started any work, they will still probably want to delete the branch before re-fetching it.
+IMAGE: DANGER ZONE
 
 ---
 
-Trail: Updating commits
+Trail: Undoing commits ⚠️
 
 ## Question: is it the most recent commit?
 
 ---
 
-Trail: Updating commits,Most recent commit?
+Trail: Undoing commits ⚠️,Most recent commit?
 
 ## YES
 
 ---
 
-Trail: Updating commits,Most recent commit?,YES
+Trail: Undoing commits ⚠️,Most recent commit?,YES
 
-## Case: "I want to undo my last commit and save the results"
+## Case: "I want to undo my last commit(s)"
 
-### Scenario
+IMAGE: undoing most recent commit
 
-### Command
+Notes: this applies to the most recent N commits
 
-- `git reset`
-  - `--soft` or `--mixed` flags depend on what state you want the changes in (soft: staged or mixed: unstaged)
+---
+
+Trail: Undoing commits ⚠️,Most recent commit?,YES
+
+### Resolution
+
+#### `git reset ...`
+
+Notes:
+
+and there will be some arguments to this command
+
+- for starters, you _can_ give it a path if you want to reset specific files
+- it will assume you just mean everything
+
+- but also, we can tell Git what to do with the changes it resets
+
+---
+
+sjhsjhsjh here - break this stuff up (and swallow the --hard stuff from the future into here)
+
+Trail: Undoing commits ⚠️,Most recent commit?,YES,git reset
+
+### `git reset --soft`
+
+- `--soft` or `--mixed` flags depend on what state you want the changes in (soft: staged or mixed: unstaged)
 
 ```
 --mixed               reset HEAD and index
@@ -55,7 +76,7 @@ Trail: Updating commits,Most recent commit?,YES
 
 ---
 
-Trail: Updating commits,Most recent commit?,YES
+Trail: Undoing commits ⚠️,Most recent commit?,YES
 
 ## Case: "I want to undo my last commit and never see it again"
 
@@ -76,13 +97,13 @@ Trail: Updating commits,Most recent commit?,YES
 
 ---
 
-Trail: Updating commits,Most recent commit?
+Trail: Undoing commits ⚠️,Most recent commit?
 
 ## NO
 
 ---
 
-Trail: Updating commits,Most recent commit?,NO
+Trail: Undoing commits ⚠️,Most recent commit?,NO
 
 ## Case: "I want to revert a commit without rewriting history"
 
@@ -101,7 +122,7 @@ Trail: Updating commits,Most recent commit?,NO
 
 ---
 
-Trail: Updating commits
+Trail: Undoing commits ⚠️
 
 ## Case: "Awwww @#$!#$#@ I committed secrets and I pushed them up"
 
@@ -109,6 +130,7 @@ Trail: Updating commits
 
 ### Command
 
+- remember the reflog? It tracks everything! So creds are hard to get rid of.
 - https://sparkbox.com/foundry/remove_file_from_git_history_with_git_filter-branch
 - cycle your credentials!!!!
 
