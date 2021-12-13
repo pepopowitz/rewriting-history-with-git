@@ -24,8 +24,6 @@ you move through the stages by spinning the wheel
 
 Trail: Stages of work,Wheel! Of! Git!
 
-### 1. Unmodified
-
 Notes:
 
 you have no local changes.
@@ -35,14 +33,6 @@ you have no local changes.
 <!-- .slide: data-background="/images/wheel-1-2-animated.svg" -->
 
 Trail: Stages of work,Wheel! Of! Git!
-
----
-
-<!-- .slide: data-background="/images/wheel-2-static.svg" -->
-
-Trail: Stages of work,Wheel! Of! Git!
-
-### 2. Modified (or Untracked)
 
 Notes:
 
@@ -58,11 +48,9 @@ untracked: a new file has been added that is not yet in the repository
 
 ---
 
-<!-- .slide: data-background="/images/wheel-3-static.svg" -->
+<!-- .slide: data-background="/images/wheel-2-3-animated.svg" -->
 
 Trail: Stages of work,Wheel! Of! Git!
-
-### 3. Staged
 
 Notes:
 
@@ -72,11 +60,9 @@ this moves us forward to the `staged` sector of the wheel
 
 ---
 
-<!-- .slide: data-background="/images/wheel-4-static.svg" -->
+<!-- .slide: data-background="/images/wheel-3-1-animated.svg" -->
 
 Trail: Stages of work,Wheel! Of! Git!
-
-### 1. Committed
 
 Notes:
 
