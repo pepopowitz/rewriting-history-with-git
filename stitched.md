@@ -1313,287 +1313,567 @@ Layout: module
 
 ---
 
-Trail: Undoing commits ⚠️
+Trail: Undoing commits
 
-## !!!Danger zone!!!!
+## Case: "I want to undo a commit without rewriting history"
 
-IMAGE: DANGER ZONE
+IMAGE: revert commit without rewriting history
 
----
+Notes:
 
-Trail: Undoing commits ⚠️
+so effectively, I want a new commit that does the opposite of an old commit
 
-## Question: is it the most recent commit?
+adds what was removed, and removes what was added
 
----
-
-Trail: Undoing commits ⚠️,Most recent commit?
-
-## YES
+the inverse of a previous commit
 
 ---
 
-Trail: Undoing commits ⚠️,Most recent commit?,YES
+Trail: Undoing commits,Undo without rewriting history
 
-## Case: "I want to undo my last commit(s)"
+### Resolution
 
-IMAGE: undoing most recent commit
+#### `git revert a1a1a1a1`
+
+IMAGE: log after a revert
+
+Notes:
+
+- this creates another commit with the inverse of those changes
+- the original commit remains in the log forever!
+- which is nice if you don't want to worry about this being a shared/public branch
+- note that changes were only added to the end of the log, not rewritten
+
+---
+
+Trail: Undoing commits,Undo without rewriting history
+
+### Real-life Examples
+
+- "Rolling back" a questionable change that got deployed 🤔
+<!-- .element: class="fragment" -->
+
+---
+
+Trail: Undoing commits
+
+## Case: "I want to undo my most recent commit(s)"
+
+IMAGE: undoing most recent commit(s)
 
 Notes: this applies to the most recent N commits
 
 ---
 
-Trail: Undoing commits ⚠️,Most recent commit?,YES
+Trail: Undoing commits,Undo most recent commits ⚠️
 
-### Resolution
+## !!!Danger zone!!!!
 
-#### `git reset ...`
+IMAGE: DANGER ZONE
 
 Notes:
 
-and there will be some arguments to this command
+a revert commit didn't rewrite the log
 
+but now we're going to rewrite the log
+
+---
+
+Trail: Undoing commits,Undo most recent commits ⚠️
+
+### Resolution
+
+#### `git reset a1a1a1a1`
+
+IMAGE: wheel rolling back a few commits
+
+Notes:
+
+- target can be a SHA, or a branch name, or a label...anything git can use to identify a specific commit
+- there will be some arguments to this command
+- ...
 - for starters, you _can_ give it a path if you want to reset specific files
 - it will assume you just mean everything
-
+- ...
 - but also, we can tell Git what to do with the changes it resets
 
 ---
 
-sjhsjhsjh here - break this stuff up (and swallow the --hard stuff from the future into here)
+Trail: Undoing commits,Undo most recent commits ⚠️,git reset
 
-Trail: Undoing commits ⚠️,Most recent commit?,YES,git reset
+### `git reset --soft a1a1a1a1`
 
-### `git reset --soft`
+IMAGE: results after soft reset
 
-- `--soft` or `--mixed` flags depend on what state you want the changes in (soft: staged or mixed: unstaged)
+Notes:
 
-```
---mixed               reset HEAD and index
---soft                reset only HEAD
---hard                reset HEAD, index and working tree
-```
+- will leave changes that were undone in a **staged** state
 
 - afterward you can do what you want with the changes -- stash them, etc.
 
-### Real-life Examples
+---
 
-- you accidentally commit on a branch you didn't mean to
-  - reset, switch to a new branch, & commit
+Trail: Undoing commits,Undo most recent commits ⚠️,git reset
+
+### `git reset --mixed a1a1a1a1`
+
+IMAGE: results after mixed reset
+
+Notes:
+
+will leave changes that were undone in a **changed** state
 
 ---
 
-Trail: Undoing commits ⚠️,Most recent commit?,YES
+Trail: Undoing commits,Undo most recent commits ⚠️,git reset
 
-## Case: "I want to undo my last commit and never see it again"
+### `git reset --hard a1a1a1a1`
 
-### Scenario
+IMAGE: results after hard reset
 
-### Command
+Notes:
 
-- `git reset --hard HEAD~1`
-  - details of what `HEAD~1` MEANS
-
-### Real-life Examples
-
-- I committed a secret **but didn't push it up yet**
-  - note that the commit itself doesn't get cleaned up right away, until git garbage collects it
-    - and in order to be removed by gc, it needs to be removed from reflog
-      - which by default doesn't happen for 30 days for unreachable commits
-      - so if you need to completely wipe this commit from existence, you have to do a little bit more
+will revert changes that were undone!!
 
 ---
 
-Trail: Undoing commits ⚠️,Most recent commit?
-
-## NO
-
----
-
-Trail: Undoing commits ⚠️,Most recent commit?,NO
-
-## Case: "I want to revert a commit without rewriting history"
-
-### Scenario
-
-### Command
-
-- `git revert SHA`
-- this creates another commit with the inverse of those changes
-- the original commit remains in the log forever!
-  - which is nice if you don't want to worry about this being a shared/public branch
+Trail: Undoing commits,Undo most recent commits ⚠️,git reset
 
 ### Real-life Examples
 
-- rolling back a change that got deployed, without having to "roll back".
+- accidentally committed on a branch you didn't mean to 😅
+<!-- .element: class="fragment" -->
+- too much in one commit and you want your log to tell a story 📕
+<!-- .element: class="fragment" -->
+- committed a secret but didn't push it up yet 😬
+<!-- .element: class="fragment" -->
+
+Notes:
+
+- 1: you would reset, switch to a new branch, & commit
+- 3: note that the commit itself doesn't get cleaned up right away, until git garbage collects it
+  - and in order to be removed by gc, it needs to be removed from reflog
+    - which by default doesn't happen for 30 days for unreachable commits
+    - so if you need to completely wipe this commit from existence, you have to do a little bit more
 
 ---
 
-Trail: Undoing commits ⚠️
+Trail: Undoing commits
 
-## Case: "Awwww @#$!#$#@ I committed secrets and I pushed them up"
+## Case: "Awwww 🤬 I committed secrets and I pushed them up HALP"
 
-### Scenario
+IMAGE: secrets in the log
 
-### Command
+Notes:
 
-- remember the reflog? It tracks everything! So creds are hard to get rid of.
-- https://sparkbox.com/foundry/remove_file_from_git_history_with_git_filter-branch
-- cycle your credentials!!!!
+we can try to rewrite with reset, but here's the problem
 
-### Real-life Examples
+---
+
+Trail: Undoing commits,Spoiled secrets ⚠️
+
+IMAGE: reflog showing secrets committed
+
+Notes:
+
+even if we do, and we don't see those secrets, the reflog still has that commit!
+
+the reflog will get cleared out locally through garbage collection
+
+so if you didn't push the commit with the secrets, and you reset, you're fine
+
+but if you pushed up that commit, it's out there
+
+and you need to take a couple drastic steps
+
+---
+
+Trail: Undoing commits,Spoiled secrets ⚠️
+
+## !!!Danger zone!!!!
+
+## IMAGE: DANGER ZONE
+
+---
+
+Trail: Undoing commits,Spoiled secrets ⚠️
+
+### Resolution
+
+#### 1. `git filter-branch`
+
+#### 2. Cycle your credentials
+
+Notes:
 
 - https://git-scm.com/book/en/v2/Git-Basics-Undoing-Things
 
 ---
 Layout: module
 
-# Replaying Changes
+# Moving Commits
 
-## I want to replay this branch onto a different starting point.
-
-todo: is there a better way to say that before they know what replaying is?
+## I want to move commits to a different branch.
 
 ---
 
-Trail: Replaying changes
+Trail: Moving commits
 
-## What do you mean replaying?
+## Case: "I want to copy specific commits into another branch"
 
-### Merging vs rebasing
+IMAGE: moving a cherry-picked commit from one branch to another
 
 ---
 
-Trail: Replaying changes
+Trail: Moving commits,Copy commits from another branch
 
-## Case: "I want this branch to be based on a different starting point"
+### Resolution
 
-### Scenario
+#### `git cherry-pick a1a1a1a1`
 
-### Command
+IMAGE: cherry pick applied to the end
 
-- `git rebase identifier`
+Notes:
+
+this will select a commit from anywhere in your log, and apply it to the end of your current branch
+
+---
+
+Trail: Moving commits
+
+## Case: "I want to move the head of my branch to another starting point"
+
+IMAGE: moving a branch head
+
+---
+
+Trail: Moving commits,Moving branch head ⚠️
+
+## !!!Danger zone!!!!
+
+IMAGE: DANGER ZONE
+
+Notes:
+
+even though the contents of the commits we're moving haven't changed,
+
+the code they're based on is different
+
+so the SHAs are different
+
+---
+
+Trail: Moving commits,Moving branch head ⚠️
+
+## Merging vs rebasing
+
+IMAGE: merging
+IMAGE: rebasing
+
+Notes:
+
+when we say "move the branch head" we mean rebasing
+
+merging applies the other branch to the end of this one, as a new "merge commit"
+
+rebasing is like winding the wheel of git back a few turns, then checking out a different commit, then letting the wheel spin back forward
+
+---
+
+Trail: Moving commits,Rebasing a branch ⚠️
+
+### Resolution
+
+- `git rebase some-identifier`
+
+Notes:
+
 - identifier can be a branch name, a SHA, a tag, a relative reference like HEAD~2....
+
+---
+
+Trail: Moving commits,Rebasing a branch ⚠️
 
 ### Real-life Examples
 
-- New changes have been merged to main and I need to rebase my branch on the latest main commit
-- I created a branch from the wrong commit/branch and I want to move it
+- new changes have been merged to main and I want my branch based on latest 🤗
+<!-- .element: class="fragment" -->
+- created a branch from the wrong commit/branch and I want to move it 🚛
+<!-- .element: class="fragment" -->
 
 ---
-
-TODO: rebasing is like winding the wheel of git back a few turns, then checking out a different commit, then letting the wheel spin back forward
 Layout: module
 
-# Replaying Changes With Modifications
+# Rewriting Old Commits
 
-## I did something a few commits ago that I want to change.
+## I did something a few commits ago that I want to rewrite.
 
-- and I want to rewrite it out of history (so a revert commit wasn't what you wanted)
+Notes:
 
----
-
-Trail: Replaying changes With modifications
-
-## Detour: Interactive Rebasing
-
-- note that if you just "pick" everything it is the same as rebasing non-interactively
-- note that when rewriting commits, the SHAs are changed!!!
-  - be extra careful when pushing this!!!
-- note that you can abort from the rebase interactive screen by exiting without saving (`:q!`)
-- to continue, save the file (`:wq`)
+- not just "change" -- _rewrite_.
+- If you just want to undo and don't care about rewriting history, you can use a revert commit
 
 ---
 
-Trail: Replaying changes With modifications
+Trail: Rewriting old commits
+
+## Interactive Rebasing
+
+---
+
+Trail: Rewriting old commits,Interactive rebasing
+
+IMAGE: rebasing and watching the wheel replay on another head
+
+Notes:
+
+we talked about rebasing, as this thing we do to move a branch head
+
+---
+
+Trail: Rewriting old commits,Interactive rebasing
+
+IMAGE: rebasing and watching the wheel replay on itself
+
+Notes:
+
+but there's no reason we couldn't do a rebase against the head we're already pointed at
+
+but what would be the point of that?
+
+---
+
+Trail: Rewriting old commits,Interactive rebasing
+
+IMAGE: rebasing and watching the wheel replay on itself with something other than "pick"
+
+Notes:
+
+well, what if we were to replay on the head we're already pointed at,
+
+but do different things with the commits we're replaying?
+
+---
+
+Trail: Rewriting old commits,Interactive rebasing
+
+IMAGE: rebasing and watching the wheel replay with a manifest
+
+Notes:
+
+and that's exactly what interactive rebasing is
+
+- we replay our current branch onto a head, which one isn't important
+- we give git a manifest specifying what to do with each commit in the branch
+- and git rebases & applies the actions we specify
+
+---
+
+Trail: Rewriting old commits,Interactive rebasing
+
+### Resolution
+
+- `git rebase -i main`
+
+IMAGE: an interactive rebase in terminal
+
+Notes:
+
+- in practice, it looks like this:
+
+- note that the default is to "pick" each commit.
+
+  - if you don't change any, it is the same as a plain non-interactive rebase
+
+- note that you can abort from the rebase interactive screen by exiting without saving `:q!`
+- to continue, save the file `:wq`
+
+---
+
+Trail: Rewriting old commits,Interactive rebasing ⚠️
+
+## !!!Danger zone!!!!
+
+IMAGE: DANGER ZONE
+
+Notes:
+
+the SHAs are changing again!
+
+---
+
+Trail: Rewriting old commits,Interactive rebasing ⚠️
 
 ## Case: "I want to reorder the commits in this branch"
 
-### Scenario
-
-### Command
-
-- `git rebase -i`; swap lines
-
-### Real-life Examples
-
-- I want my PR to tell a story
-- I want my PR to be a useful guide for someone doing something similar in the future
-- note that even if you go from 7-6-8 to 6-7-8, and both end up with the code being the same at 8, you'll end up with a new commit for 8!
+IMAGE: reordering commits in an interactive rebase
 
 ---
 
-Trail: Replaying changes With modifications
+Trail: Rewriting old commits,Interactive rebasing ⚠️,Reordering commits
+
+### Resolution
+
+#### `git rebase -i main`
+
+#### swap lines
+
+IMAGE: swapping lines in an interactive rebase
+
+Notes:
+
+find VIM commands for moving lines
+
+---
+
+Trail: Rewriting old commits,Interactive rebasing ⚠️,Reordering commits
+
+### Real-life Examples
+
+- I want my PR to tell a story 📖
+<!-- .element: class="fragment" -->
+- I want my PR to be a useful guide for someone doing something similar in the future 📝
+<!-- .element: class="fragment" -->
+
+Notes:
+
+Even if you go from 7-6-8 to 6-7-8, and both end up with the code being the same at 8, you'll end up with a new commit for 8!
+
+The SHA of 6 and 7 changed, so 8 does too!
+
+---
+
+Trail: Rewriting old commits,Interactive rebasing ⚠️
 
 ## Case: "I want to remove a commit from this branch"
 
-### Scenario
-
-### Command
-
-- `git rebase -i`; `drop`/`d`
-
-### Real-life Examples
-
-- I made a quick fix and committed it in my branch but someone else did it better in another branch
-- I was messing around and made a commit that I just don't want anymore
+IMAGE: dropping commits in an interactive rebase
 
 ---
 
-Trail: Replaying changes With modifications
+Trail: Rewriting old commits,Interactive rebasing ⚠️,Removing commits
+
+### Resolution
+
+#### `git rebase -i`
+
+#### `drop`/`d`
+
+IMAGE: dropping commits in an interactive rebase
+
+Notes:
+
+---
+
+Trail: Rewriting old commits,Interactive rebasing ⚠️,Removing commits
+
+### Real-life Examples
+
+- I made a quick fix and committed it in my branch but someone else did it better in another branch 🤗
+<!-- .element: class="fragment" -->
+- I made a commit that I just don't want anymore 🗑
+<!-- .element: class="fragment" -->
+
+Notes:
+
+ability to drop through interactive rebase gives you freedom to mess around and try things out,
+
+and not worry about people seeing your experiments
+
+---
+
+Trail: Rewriting old commits,Interactive rebasing ⚠️,Reordering commits
 
 ## Case: "I want to update a commit in this branch"
 
-- remember that if it's the latest you can use `git commit --amend` without rebasing
+IMAGE: updating a commit in an interactive rebase
 
-### Scenario
+Notes:
 
-### Command
+remember that if it's the latest you can use `git commit --amend` without rebasing
 
-- `git rebase -i`; `edit`/`e`
+---
+
+Trail: Rewriting old commits,Interactive rebasing ⚠️,Reordering commits
+
+### Resolution
+
+#### `git rebase -i main`
+
+#### `edit`/`e`
+
+IMAGE: editing in an interactive rebase
+Notes:
+
 - make the changes
 - `git commit --amend` (or make a new commit)
 - `git rebase --continue`
 
-### Notes
-
 - you can edit multiple commits while rebasing
 - if you do multiple, you'll repeat the "make changes, amend, continue" loop until they're all complete
 
+---
+
+Trail: Rewriting old commits,Interactive rebasing ⚠️,Reordering commits
+
 ### Real-life Examples
 
-- I want to give credit where credit is due! (pairing; mention pear)
-- I accidentally included a comment or debugging statement in a previous commit
+- I want to give credit where credit is due! 🍐
+<!-- .element: class="fragment" -->
+- I accidentally included a comment or debugging statement in a previous commit 🐛
+<!-- .element: class="fragment" -->
 
 ---
 
-Trail: Replaying changes With modifications
+Trail: Rewriting old commits,Interactive rebasing ⚠️
 
 ## Case: "I want to combine some older commits into one"
 
-### Scenario
+IMAGE: squashing commits in an interactive rebase
 
-### Command
+---
 
-- `git rebase -i`;
-- `squash`/`s`
-  - if I care about preserving the individual commit messages
-  - `:wq` to start rebasing
-  - edit "squashed" commit message (tells you what's all in this commit)
-    - `:wq` to make this commit
-- `fixup`/`f`
-  - if I don't care about preserving the individual commit messages
-  - `:wq` to start rebasing
+Trail: Rewriting old commits,Interactive rebasing ⚠️,Combining commits
+
+### Resolution
+
+#### `git rebase -i main`
+
+#### `squash`/`s` or `fixup`/`f`
+
+Notes:
+
+- diff between s and f is that squash will preserve the squashed commit messages as notez
+
+- git will ask you to edit the message if you squash
+
+- `git rebase --continue`
+
+---
+
+Trail: Rewriting old commits,Interactive rebasing ⚠️,Combining commits
+
+### Real-life Examples
+
+- I missed part of a previous commit until later 😮
+<!-- .element: class="fragment" -->
+- I want my PR to tell a story 📗
+<!-- .element: class="fragment" -->
+- I want my PR to be a useful guide for someone doing something similar in the future 📝
+<!-- .element: class="fragment" -->
+
+Notes:
+
+---
+
+TODO: figure out how to talk about conflicts
+
 - need to deal with any conflicts along the way
   - make changes
   - commit them
   - `git rebase --continue`
 
-### Real-life Examples
-
-- I missed part of a previous commit until later
-- I want my PR to tell a story
-- I want my PR to be a useful guide for someone doing something similar in the future
+TODO: maybe a complicated interactive rebase to show it all coming together?
 
 ---
 Layout: module
